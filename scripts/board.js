@@ -8,11 +8,12 @@ const SHIP_LENGTH = {
   destroyer: 2
 };
 
+var playerBoards = {};
+
 
 // MARK: - Coordinates
 
-// Verify if a vector is a valid coordinate.
-// Returns true if input is within the bounds of the board, and false otherwise.
+// Verify if a vector is a valid coordinate. Returns true if input is within the bounds of the board, and false otherwise.
 const validateCoordinate = function isCoordinateWithinBounds({ x, y }) {
   if (row < 0 || row >= BOARD_SIZE) return false;
   if (col < 0 || col >= BOARD_SIZE) return false;
@@ -46,20 +47,75 @@ const newShip = function createNewShip(type, { x, y }, isHorizontal) {
     };
   }
   var isDamaged = Array(SHIP_LENGTH[type]).fill(false);
+  var isSunk = false;
 
   return {
     type,
     coordinates,
-    isDamaged
+    isDamaged,
+    isSunk
   };
 }
 
-// Verify if a ship is in in a valid location.
-// Returns true if the ship is within the bounds of the board and does not overlap with existing ships, and false otherwise.
+// Verify if a ship is in in a valid location. Returns true if the ship is within the bounds of the board and does not overlap with existing ships, and false otherwise.
 const validateShip = function isShipLocationLegal(ship, player) {
   for (let coordinate in ship.coordinates) {
     if (!validateCoordinate(coordinate)) return false;
     // TODO: Implement ship collision detection.
     return true;
   }
+}
+
+// Return whether or not the ship has been completely sunk (all its sections have been damaged).
+const isDestroyed = function isShipDestroyed(ship) {
+  for (let damageSegment of ship.isDamaged) {
+    if (!damageSegment) return false;
+  }
+
+  return true;
+}
+
+// Damage a segment of a ship.
+const damage = function damageShipSegment(ship, index) {
+  ship.isDamaged[index] = true;
+}
+
+// Sink a ship.
+const sink = function sinkShip(ship) {
+  ship.isSunk = true;
+}
+
+
+// MARK: - Player
+
+// Create an empty player board.
+const newPlayerBoard = function createNewPlayerBoard() {
+  return {
+    ships: [],
+    isAlive: true
+  };
+}
+
+// Add a ship to a player's board.
+const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
+  if (validateShip(ship, player)) playerBoards[player].ships.push(ship);
+}
+
+// Resolve an attack on a player's board, returning whether or not something was hit. If a ship is hit, additionally return the ship's type and whether the attack sank it.
+const attack = function attackPlayerAtCoordinate(player, { x, y }) {
+  playerBoards[player].ships.forEach(function (ship) {
+    for (let i = 0; i < ship.coordinates.length; i++) {
+      damage(ship, i);
+
+      const isSunk = isDestroyed(ship);
+      if (isSunk) sink(ship);
+
+      return {
+        isHit: true,
+        shipType: ship.type,
+        isSunk: sunk
+      };
+    }
+  });
+  return { isHit: false };
 }
