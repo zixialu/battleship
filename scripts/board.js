@@ -24,4 +24,4 @@ const translateCoordinate = {
   toString: function toStringFromPosition({ x, y }) {
     return String.fromCharCode(x + 65) + y;
   }
-}
+};
