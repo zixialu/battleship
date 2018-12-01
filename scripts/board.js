@@ -22,7 +22,6 @@ const validateCoordinate = function isCoordinateWithinBounds({ x, y }) {
 const translateCoordinate = {
   // Return a vector object from a coordinate string, e.g. C4 => { 2, 3 }.
   toPosition: function toPositionFromString(str) {
-    // TODO: Validate str is a coordinate
     const x = str.charCodeAt(0) - 65; // 65 is the charCode for 'A'
     const y = Number(str.split(1)) - 1;
     return { x, y };
@@ -36,6 +35,8 @@ const translateCoordinate = {
 
 
 // MARK: - Ships
+
+// Create and return a new ship object from a type, top-left position, and orientation.
 const newShip = function createNewShip(type, { x, y }, isHorizontal) {
   var coordinates = [];
   for (let i = 0; i < SHIP_LENGTH[type], i++) {
@@ -55,10 +56,10 @@ const newShip = function createNewShip(type, { x, y }, isHorizontal) {
 
 // Verify if a ship is in in a valid location.
 // Returns true if the ship is within the bounds of the board and does not overlap with existing ships, and false otherwise.
-const validateShip = function isShipLocationLegal(ship) {
+const validateShip = function isShipLocationLegal(ship, player) {
   for (let coordinate in ship.coordinates) {
     if (!validateCoordinate(coordinate)) return false;
-    // TODO: Implement ship detection.
+    // TODO: Implement ship collision detection.
     return true;
   }
 }
