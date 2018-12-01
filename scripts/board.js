@@ -8,7 +8,21 @@ const SHIP_LENGTH = {
   destroyer: 2
 };
 
+// MARK: - Board
 var playerBoards = {};
+
+// Create an empty player board.
+const newPlayerBoard = function createNewPlayerBoard() {
+  return {
+    ships: [],
+    isAlive: true
+  };
+}
+
+// Add a ship to a player's board.
+const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
+  if (validateShip(ship, player)) playerBoards[player].ships.push(ship);
+}
 
 
 // MARK: - Coordinates
@@ -68,8 +82,8 @@ const validateShip = function isShipLocationLegal(ship, player) {
 
 // Return whether or not the ship has been completely sunk (all its sections have been damaged).
 const isDestroyed = function isShipDestroyed(ship) {
-  for (let damageSegment of ship.isDamaged) {
-    if (!damageSegment) return false;
+  for (let isSegmentDamaged of ship.isDamaged) {
+    if (!isSegmentDamaged) return false;
   }
 
   return true;
@@ -86,22 +100,9 @@ const sink = function sinkShip(ship) {
 }
 
 
-// MARK: - Player
+// MARK: - Play
 
-// Create an empty player board.
-const newPlayerBoard = function createNewPlayerBoard() {
-  return {
-    ships: [],
-    isAlive: true
-  };
-}
-
-// Add a ship to a player's board.
-const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
-  if (validateShip(ship, player)) playerBoards[player].ships.push(ship);
-}
-
-// Resolve an attack on a player's board, returning whether or not something was hit. If a ship is hit, additionally return the ship's type and whether the attack sank it.
+// Resolve an attack on a player's board, returning whether or not something was hit. If a ship was hit, additionally return the ship's type and whether the attack sank it.
 const attack = function attackPlayerAtCoordinate(player, { x, y }) {
   playerBoards[player].ships.forEach(function (ship) {
     for (let i = 0; i < ship.coordinates.length; i++) {
