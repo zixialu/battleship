@@ -3,6 +3,7 @@ const history = require('./scripts/history');
 
 
 var playerOrder = [];
+var gameOver = false;
 
 const startGame = function setupGameObjects() {
   // Instantiate Players
@@ -21,10 +22,11 @@ const startGame = function setupGameObjects() {
 };
 
 const gameLoop = function () {
-  while(true) {
+  while(!gameOver) {
     for (player of playerOrder) {
       if (!getBoards[player].isAlive) {
         // TODO: Implement game over
+        gameOver = true;
         break;
       }
 
