@@ -1,12 +1,12 @@
 # Battleship
-## Stretch Project for Lighthouse Labs
+Stretch Project for Lighthouse Labs
 
-### Goal
+## Goal
 This project will consist of building a battleship game.
 
 Again, there are intentionally no visuals and no assets provided with this project, and many aspects of the UI are left intentionally vague. We are leaving you freedom to get creative with the UI. We encourage you to make the game look presentable and even add extra flair with things like CSS transitions and animations.
 
-### Battleship Rules
+## Battleship Rules
 Each player has a 10x10 board on which the player is able to place 5 ships:
 * A **Carrier**, which is **5** tiles long
 * A **Battleship**, which is **4** tiles long
