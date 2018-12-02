@@ -37,7 +37,7 @@ The game ends when one player has sunk all of the opposing player's ships.
 * Have a leaderboard for games against the AI
 
 ### Display Requirements
-* Players should be able to see the other players board and their own
+* Players should be able to see the other player's board and their own
 * The game should show whose turn it currently is
 * Show a list of ships for each player
 * Show a log of shots and messages to the player
