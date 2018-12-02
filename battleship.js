@@ -15,4 +15,20 @@ const startGame = function setupGameObjects() {
 
   // Initialize History
   history.initializeHistory(board.getBoards(), playerOrder);
+
+  // Start Game
+  gameLoop();
+};
+
+const gameLoop = function () {
+  while(true) {
+    for (player of playerOrder) {
+      if (!getBoards[player].isAlive) {
+        // TODO: Implement game over
+        break;
+      }
+
+      // TODO: Implement run turn
+    }
+  }
 };
