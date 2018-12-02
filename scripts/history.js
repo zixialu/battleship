@@ -38,7 +38,7 @@ const getLogMessage = function getLogMessageFromHistoryElement(histObj) {
   var logMessage = `${histObj.originPlayer} shoots at ${coordsStr}: `;
   logMessage += histObj.isHit ? 'HIT' : 'MISS';
   if (histObj.isSunk) {
-    logMessage += `\n${histObj.originPlayer} has sunk a ${histObj.shipType}!`
+    logMessage += `\n${histObj.originPlayer} has sunk a ${histObj.shipType}!`;
   }
 
   return logMessage;
