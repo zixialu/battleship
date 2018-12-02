@@ -1,12 +1,14 @@
 const ships = require('./ships');
+const history = require('./history');
 
 
 // MARK: - Board
 var playerBoards = {};
 
-// Create an empty player board.
-const newPlayerBoard = function createNewPlayerBoard() {
-  return {
+// Create an empty player board inside playerBoards.
+const newPlayerBoard = function createNewPlayerBoard(player, goesFirst) {
+  playerBoards[player] = {
+    goesFirst,
     ships: [],
     isAlive: true
   };
@@ -34,13 +36,19 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
       if (isSunk) { ships.sink(ship); }
 
       return {
+        target: player,
+        coordinates: { x, y },
         isHit: true,
         shipType: ship.type,
         isSunk: sunk
       };
     }
   });
-  return { isHit: false };
+  return {
+    target: player,
+    coordinates: { x, y },
+    isHit: false
+  };
 };
 
 // MARK: - Export
