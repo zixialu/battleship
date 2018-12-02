@@ -1,14 +1,18 @@
 const ships = require('./ships');
-const history = require('./history');
 
 
 // MARK: - Board
 var playerBoards = {};
 
+// Returns a deep copy of playerBoards
+const getBoards = function getPlayerBoardsCopy() {
+  // FIXME: Is this the most efficient way to deep copy an object?
+  return JSON.parse(JSON.stringify(playerBoards));
+};
+
 // Create an empty player board inside playerBoards.
-const newPlayerBoard = function createNewPlayerBoard(player, goesFirst) {
+const newPlayer = function createNewPlayerBoard(player) {
   playerBoards[player] = {
-    goesFirst,
     ships: [],
     isAlive: true
   };
@@ -52,4 +56,4 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
 };
 
 // MARK: - Export
-module.exports = { newPlayerBoard, addShipToBoard, attack };
+module.exports = { newPlayer, addShipToBoard, attack };
