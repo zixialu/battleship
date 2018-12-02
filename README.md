@@ -19,7 +19,7 @@ Each ship can be placed either horizontally, or vertically on the board, and can
 Each tile is denoted by a coordinate, **A-J** for columns and **1-10** for rows
 * I.e. the top-left corner would be at coordinate **A1**
 
-Each player then takes turns piching a tile on the opposing player's grid, taking a shot at that tile.
+Each player then takes turns picking a tile on the opposing player's grid, taking a shot at that tile.
 * If the tile contain a ship, the shot is a **HIT**
 * If the tile does not contain a ship, the shot is a **MISS**
 
