@@ -1,3 +1,4 @@
+const coordinates = require('./coordinates');
 const ships = require('./ships');
 
 
@@ -54,6 +55,16 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
     isHit: false
   };
 };
+
+// Return true if attack target is within bounds and hasn't been targeted before
+const validateAttack = function isAttackLegal(player, { x, y }) {
+  // Target is within bounds
+  if (!coordinates.validate({ x, y })) { return false; }
+
+  // Target has not already been attacked
+  // TODO: Implement this
+};
+
 
 // MARK: - Export
 module.exports = { newPlayer, addShipToBoard, attack };
