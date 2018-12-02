@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Stretch project for Lighthouse Labs",
   "main": "battleship.js",
+  "repository": "github:zixialu/battleship",
   "scripts": {
     "test": "mocha"
   },
