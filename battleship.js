@@ -5,6 +5,20 @@ const history = require('./scripts/history');
 var playerOrder = [];
 var gameOver = false;
 
+const gameLoop = function () {
+  while(!gameOver) {
+    for (player of playerOrder) {
+      if (!getBoards[player].isAlive) {
+        // TODO: Implement game over
+        gameOver = true;
+        break;
+      }
+
+      // TODO: Implement run turn
+    }
+  }
+};
+
 const startGame = function setupGameObjects() {
   // Instantiate Players
   // TODO: Implement logic for who goes first, and player naming
@@ -21,18 +35,5 @@ const startGame = function setupGameObjects() {
   gameLoop();
 };
 
-const gameLoop = function () {
-  while(!gameOver) {
-    for (player of playerOrder) {
-      if (!getBoards[player].isAlive) {
-        // TODO: Implement game over
-        gameOver = true;
-        break;
-      }
-
-      // TODO: Implement run turn
-    }
-  }
-};
 
 startGame();
