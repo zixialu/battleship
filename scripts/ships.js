@@ -5,20 +5,20 @@ const coordinates = require('./coordinates');
 
 // Create and return a new ship object from a type, top-left position, and orientation.
 const newShip = function createNewShip(type, { x, y }, isHorizontal) {
-  var coordinates = [];
+  var coords = [];
   for (let i = 0; i < SHIP_LENGTH[type], i++) {
     const newCoordinate = {
       x: isHorizontal ? x + i : x,
       y: isHorizontal ? y : y + i
     };
-    coordinates.push(newCoordinate);
+    coords.push(newCoordinate);
   }
   var isDamaged = Array(SHIP_LENGTH[type]).fill(false);
   var isSunk = false;
 
   return {
     type,
-    coordinates,
+    coordinates: coords,
     isDamaged,
     isSunk
   };
