@@ -1,16 +1,6 @@
 const ships = require('./ships');
 
 
-// MARK: - Constants
-const BOARD_SIZE = 10;
-const SHIP_LENGTH = {
-  carrier: 5,
-  battleship: 4,
-  cruiser: 3,
-  submarine: 3,
-  destroyer: 2
-};
-
 // MARK: - Board
 var playerBoards = {};
 
@@ -48,3 +38,6 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
   });
   return { isHit: false };
 };
+
+// MARK: - Export
+module.exports = { newPlayerBoard, addShipToBoard, attack };

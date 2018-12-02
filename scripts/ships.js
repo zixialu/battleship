@@ -1,3 +1,4 @@
+const constants = require('./constants');
 const coordinates = require('./coordinates');
 
 
@@ -6,14 +7,14 @@ const coordinates = require('./coordinates');
 // Create and return a new ship object from a type, top-left position, and orientation.
 const newShip = function createNewShip(type, { x, y }, isHorizontal) {
   var coords = [];
-  for (let i = 0; i < SHIP_LENGTH[type]; i++) {
+  for (let i = 0; i < constants.SHIP_LENGTH[type]; i++) {
     const newCoordinate = {
       x: isHorizontal ? x + i : x,
       y: isHorizontal ? y : y + i
     };
     coords.push(newCoordinate);
   }
-  var isDamaged = Array(SHIP_LENGTH[type]).fill(false);
+  var isDamaged = Array(constants.SHIP_LENGTH[type]).fill(false);
   var isSunk = false;
 
   return {
@@ -51,3 +52,6 @@ const damage = function damageShipSegment(ship, index) {
 const sink = function sinkShip(ship) {
   ship.isSunk = true;
 };
+
+// MARK: - Export
+module.exports = { newShip, validate, isDestroyed, damage, sink };

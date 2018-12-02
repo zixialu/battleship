@@ -1,9 +1,12 @@
+const constants = require('./constants');
+
+
 // MARK: - Coordinates
 
 // Verify if a vector is a valid coordinate. Returns true if input is within the bounds of the board, and false otherwise.
 const validate = function isCoordinateWithinBounds({ x, y }) {
-  if (row < 0 || row >= BOARD_SIZE) { return false; }
-  if (col < 0 || col >= BOARD_SIZE) { return false; }
+  if (row < 0 || row >= constants.BOARD_SIZE) { return false; }
+  if (col < 0 || col >= constants.BOARD_SIZE) { return false; }
   return true;
 };
 
@@ -21,3 +24,6 @@ const translateCoordinate = {
     return String.fromCharCode(x + 65) + (y + 1);
   }
 };
+
+// MARK: - Export
+module.exports = { validate, translateCoordinate };
