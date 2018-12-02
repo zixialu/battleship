@@ -13,7 +13,7 @@ const validate = function isCoordinateWithinBounds({ x, y }) {
   return true;
 };
 
-const translateCoordinate = {
+const translate = {
   // Return a vector object from a coordinate string, e.g. C4 => { 2, 3 }.
   toPosition: function toPositionFromString(str) {
     // 65 is the char code for 'A'.
@@ -29,4 +29,4 @@ const translateCoordinate = {
 };
 
 // MARK: - Export
-module.exports = { validate, translateCoordinate };
+module.exports = { validate, translate };

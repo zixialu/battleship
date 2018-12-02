@@ -32,8 +32,8 @@ const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
  * hit. If a ship was hit, additionally return the ship's type and whether the
  * attack sank it.
  */
-const attack = function attackPlayerAtCoordinate(player, { x, y }) {
-  playerBoards[player].ships.forEach(function (ship) {
+const attack = function attackPlayerAtCoordinate(origin, target, { x, y }) {
+  playerBoards[target].ships.forEach(function (ship) {
     for (let i = 0; i < ship.coordinates.length; i++) {
       damage(ship, i);
 
@@ -41,7 +41,8 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
       if (isSunk) { ships.sink(ship); }
 
       return {
-        target: player,
+        originPlayer: origin,
+        targetPlayer: target,
         coordinates: { x, y },
         isHit: true,
         shipType: ship.type,
@@ -50,7 +51,8 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
     }
   });
   return {
-    target: player,
+    originPlayer: origin,
+    targetPlayer: target,
     coordinates: { x, y },
     isHit: false
   };
