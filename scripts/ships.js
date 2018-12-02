@@ -4,7 +4,10 @@ const coordinates = require('./coordinates');
 
 // MARK: - Ships
 
-// Create and return a new ship object from a type, top-left position, and orientation.
+/*
+ * Create and return a new ship object from a type, top-left position, and
+ * orientation.
+ */
 const newShip = function createNewShip(type, { x, y }, isHorizontal) {
   var coords = [];
   for (let i = 0; i < constants.SHIP_LENGTH[type]; i++) {
@@ -25,7 +28,11 @@ const newShip = function createNewShip(type, { x, y }, isHorizontal) {
   };
 };
 
-// Verify if a ship is in in a valid location. Returns true if the ship is within the bounds of the board and does not overlap with existing ships, and false otherwise.
+/*
+ * Verify if a ship is in in a valid location. Returns true if the ship is
+ * within the bounds of the board and does not overlap with existing ships, and
+ * false otherwise.
+ */
 const validate = function isShipLocationLegal(ship, player) {
   for (let coordinate in ship.coordinates) {
     if (!coordinates.validate(coordinate)) { return false; }
@@ -34,7 +41,10 @@ const validate = function isShipLocationLegal(ship, player) {
   }
 };
 
-// Return whether or not the ship has been completely sunk (all its sections have been damaged).
+/*
+ * Return whether or not the ship has been completely sunk (all its sections
+ * have been damaged).
+ */
 const isDestroyed = function isShipDestroyed(ship) {
   for (let isSegmentDamaged of ship.isDamaged) {
     if (!isSegmentDamaged) { return false; }

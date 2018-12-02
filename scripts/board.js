@@ -20,7 +20,11 @@ const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
 
 // MARK: - Play
 
-// Resolve an attack on a player's board, returning whether or not something was hit. If a ship was hit, additionally return the ship's type and whether the attack sank it.
+/*
+ * Resolve an attack on a player's board, returning whether or not something was
+ * hit. If a ship was hit, additionally return the ship's type and whether the
+ * attack sank it.
+ */
 const attack = function attackPlayerAtCoordinate(player, { x, y }) {
   playerBoards[player].ships.forEach(function (ship) {
     for (let i = 0; i < ship.coordinates.length; i++) {
