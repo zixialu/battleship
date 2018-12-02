@@ -58,11 +58,13 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
 
 // Return true if attack target is within bounds and hasn't been targeted before
 const validateAttack = function isAttackLegal(player, { x, y }) {
-  // Target is within bounds
+  // Check that target is within bounds
   if (!coordinates.validate({ x, y })) { return false; }
 
-  // Target has not already been attacked
+  // Check that target has not already been attacked
   // TODO: Implement this
+
+  return true;
 };
 
 
