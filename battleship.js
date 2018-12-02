@@ -32,3 +32,5 @@ const gameLoop = function () {
     }
   }
 };
+
+startGame();
