@@ -20,12 +20,12 @@ const newPlayerBoard = function createNewPlayerBoard() {
     ships: [],
     isAlive: true
   };
-}
+};
 
 // Add a ship to a player's board.
 const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
-  if (ships.validate(ship, player)) playerBoards[player].ships.push(ship);
-}
+  if (ships.validate(ship, player)) { playerBoards[player].ships.push(ship); }
+};
 
 
 // MARK: - Play
@@ -37,7 +37,7 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
       damage(ship, i);
 
       const isSunk = ships.isDestroyed(ship);
-      if (isSunk) ships.sink(ship);
+      if (isSunk) { ships.sink(ship); }
 
       return {
         isHit: true,
@@ -47,4 +47,4 @@ const attack = function attackPlayerAtCoordinate(player, { x, y }) {
     }
   });
   return { isHit: false };
-}
+};

@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-lighthouselabs",
+  "env": {
+    "es6": true
+  }
+}
