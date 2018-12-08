@@ -45,6 +45,10 @@ const startGame = function setupGameObjects() {
 
 // MARK: - Endpoints
 app.get('/', (req, res) => {
+  res.redirect('/setup');
+});
+
+app.get('/setup', (req, res) => {
   res.render('setup');
 });
 
