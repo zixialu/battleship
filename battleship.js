@@ -9,6 +9,9 @@ const PORT = 8080;
 // Set view engine to ejs
 app.set('view engine', 'ejs');
 
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
 var playerOrder = [];
 var gameOver = false;
 
@@ -53,7 +56,7 @@ app.get('/setup', (req, res) => {
 });
 
 app.post('/setup', (req, res) => {
-  // TODO: Start game with req.body values
+  // TODO: Set up game with req.body values
   res.redirect(303, 'play');
 });
 
