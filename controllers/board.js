@@ -1,15 +1,16 @@
+const model = require('/models/board');
 const coordinates = require('/controllers/coordinates');
 const ships = require('/controllers/ships');
 
 // Returns a deep copy of playerBoards
 const getBoards = function getPlayerBoardsCopy() {
   // FIXME: Is this the most efficient way to deep copy an object?
-  return JSON.parse(JSON.stringify(playerBoards));
+  return JSON.parse(JSON.stringify(model));
 };
 
 // Create an empty player board inside playerBoards.
 const newPlayer = function createNewPlayerBoard(player) {
-  playerBoards[player] = {
+  model[player] = {
     ships: [],
     isAlive: true
   };
@@ -18,7 +19,7 @@ const newPlayer = function createNewPlayerBoard(player) {
 // Add a ship to a player's board.
 const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
   if (ships.validate(ship, player)) {
-    playerBoards[player].ships.push(ship);
+    model[player].ships.push(ship);
   }
 };
 
@@ -30,7 +31,7 @@ const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
  * attack sank it.
  */
 const attack = function attackPlayerAtCoordinate(origin, target, { x, y }) {
-  playerBoards[target].ships.forEach(function(ship) {
+  model[target].ships.forEach(function(ship) {
     for (let i = 0; i < ship.coordinates.length; i++) {
       damage(ship, i);
 

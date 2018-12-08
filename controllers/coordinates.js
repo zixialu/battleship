@@ -1,4 +1,4 @@
-const constants = require('/constants');
+const constants = require('/config/constants');
 
 // MARK: - Coordinates
 

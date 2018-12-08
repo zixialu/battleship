@@ -14,6 +14,7 @@ const writeHistory = function pushActionToHistory(histObj) {
 };
 
 const getHistory = function getCompleteHistory() {
+  // TODO: Make and return a deep copy instead of the original
   return history;
 };
 
