@@ -1,9 +1,5 @@
-const coordinates = require('./coordinates');
-const ships = require('./ships');
-
-
-// MARK: - Board
-var playerBoards = {};
+const coordinates = require('/controllers/coordinates');
+const ships = require('/controllers/ships');
 
 // Returns a deep copy of playerBoards
 const getBoards = function getPlayerBoardsCopy() {
@@ -21,9 +17,10 @@ const newPlayer = function createNewPlayerBoard(player) {
 
 // Add a ship to a player's board.
 const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
-  if (ships.validate(ship, player)) { playerBoards[player].ships.push(ship); }
+  if (ships.validate(ship, player)) {
+    playerBoards[player].ships.push(ship);
+  }
 };
-
 
 // MARK: - Play
 
@@ -33,12 +30,14 @@ const addShipToBoard = function addNewShipToPlayerBoard(ship, player) {
  * attack sank it.
  */
 const attack = function attackPlayerAtCoordinate(origin, target, { x, y }) {
-  playerBoards[target].ships.forEach(function (ship) {
+  playerBoards[target].ships.forEach(function(ship) {
     for (let i = 0; i < ship.coordinates.length; i++) {
       damage(ship, i);
 
       const isSunk = ships.isDestroyed(ship);
-      if (isSunk) { ships.sink(ship); }
+      if (isSunk) {
+        ships.sink(ship);
+      }
 
       return {
         originPlayer: origin,
@@ -61,7 +60,9 @@ const attack = function attackPlayerAtCoordinate(origin, target, { x, y }) {
 // Return true if attack target is within bounds and hasn't been targeted before
 const validateAttack = function isAttackLegal(player, { x, y }) {
   // Check that target is within bounds
-  if (!coordinates.validate({ x, y })) { return false; }
+  if (!coordinates.validate({ x, y })) {
+    return false;
+  }
 
   // Check that target has not already been attacked
   // TODO: Implement this
@@ -69,6 +70,11 @@ const validateAttack = function isAttackLegal(player, { x, y }) {
   return true;
 };
 
-
 // MARK: - Export
-module.exports = { newPlayer, addShipToBoard, attack };
+module.exports = {
+  getBoards,
+  newPlayer,
+  addShipToBoard,
+  attack,
+  validateAttack
+};

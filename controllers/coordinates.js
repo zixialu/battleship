@@ -1,5 +1,4 @@
-const constants = require('./constants');
-
+const constants = require('/constants');
 
 // MARK: - Coordinates
 
@@ -8,8 +7,12 @@ const constants = require('./constants');
  * bounds of the board, and false otherwise.
  */
 const validate = function isCoordinateWithinBounds({ x, y }) {
-  if (row < 0 || row >= constants.BOARD_SIZE) { return false; }
-  if (col < 0 || col >= constants.BOARD_SIZE) { return false; }
+  if (row < 0 || row >= constants.BOARD_SIZE) {
+    return false;
+  }
+  if (col < 0 || col >= constants.BOARD_SIZE) {
+    return false;
+  }
   return true;
 };
 

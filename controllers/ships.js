@@ -1,6 +1,5 @@
-const constants = require('./constants');
-const coordinates = require('./coordinates');
-
+const constants = require('/constants');
+const coordinates = require('/controllers/coordinates');
 
 // MARK: - Ships
 
@@ -35,7 +34,9 @@ const newShip = function createNewShip(type, { x, y }, isHorizontal) {
  */
 const validate = function isShipLocationLegal(ship, player) {
   for (let coordinate in ship.coordinates) {
-    if (!coordinates.validate(coordinate)) { return false; }
+    if (!coordinates.validate(coordinate)) {
+      return false;
+    }
     // TODO: Implement ship collision detection.
     return true;
   }
@@ -47,7 +48,9 @@ const validate = function isShipLocationLegal(ship, player) {
  */
 const isDestroyed = function isShipDestroyed(ship) {
   for (let isSegmentDamaged of ship.isDamaged) {
-    if (!isSegmentDamaged) { return false; }
+    if (!isSegmentDamaged) {
+      return false;
+    }
   }
 
   return true;
