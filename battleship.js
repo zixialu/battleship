@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const board = require('./scripts/board');
 const history = require('./scripts/history');
 
@@ -44,7 +45,16 @@ const startGame = function setupGameObjects() {
 
 // MARK: - Endpoints
 app.get('/', (req, res) => {
-  res.render('game');
+  res.render('setup');
+});
+
+app.post('/setup', (req, res) => {
+  // TODO: Start game with req.body values
+  res.redirect(303, 'play');
+});
+
+app.get('/play', (req, res) => {
+  // TODO: Setup & render game.ejs
 });
 
 //MARK: - Ports
