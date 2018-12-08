@@ -30,5 +30,7 @@ const getLogMessage = function getLogMessageFromHistoryElement(histObj) {
   return logMessage;
 };
 
+// TODO: Save replay as JSON to file
+
 // MARK: - Export
 module.exports = { initializeHistory, writeHistory, getHistory, getLogMessage };
