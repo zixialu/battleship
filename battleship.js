@@ -55,6 +55,7 @@ app.post('/setup', (req, res) => {
 
 app.get('/play', (req, res) => {
   // TODO: Setup & render game.ejs
+  startGame();
 });
 
 //MARK: - Ports
@@ -62,6 +63,3 @@ app.get('/play', (req, res) => {
 app.listen(PORT, () => {
   console.log(`tinyApp listening on port ${PORT}!`);
 });
-
-// MARK: - Start
-startGame();
